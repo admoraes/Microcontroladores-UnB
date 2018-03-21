@@ -65,5 +65,21 @@ add.w 2(R9), R15
 mov.w R15, 4(R9)
 
 (e) `A[3] = 2*f - 4*h;`
+mov.w R4, R15   ;t = f
+add.w R15, R4   ;f = f + t (2f)
+
+mov.w R6, R15   ;t = h
+add.w R15, R6   ;h = h + t (2h)
+mov.w R6, R15   ;t = h
+add.w R15, R6   ;h = h + t (4h)
+
+sub.w R6, R4    ;f = 2f - 4h
+
+mov.w R4, 6(R9) ;A[3] = f
 
 (f) `A[3] = 2*(f - 2*h);`
+mov.w R6, R15   ;t = h
+add.w R15, R6   ;h = h + t (2h)
+sub.w R6, R4    ;f = f - h
+mov.w R4, R15   ;t = f
+add.w R15, R4   ;f = f+t
